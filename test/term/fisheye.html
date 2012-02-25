@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fisheye - Interface plugin for jQuery</title>
+		<script type="text/javascript" src="javascript/jquery.js"></script>
+		<script type="text/javascript" src="javascript/interface.js"></script>
+    <link   type="text/css"       href="css/interface-fisheye.css" rel="stylesheet"> 
+</head>
+<body>
+<div id="fisheye" class="fisheye">
+		<div class="fisheyeContainter">
+			<a href="#" class="fisheyeItem"><img src="images/home.png" width="30" /><span>Home</span></a>
+			<a href="#" class="fisheyeItem"><img src="images/email.png" width="30" /><span>Email</span></a>
+			<a href="#" class="fisheyeItem"><img src="images/display.png" width="30" /><span>Display</span></a>
+			<a href="#" class="fisheyeItem"><img src="images/clock.png" width="30" /><span>Clock</span></a>
+			<a href="#" class="fisheyeItem"><img src="images/web.png" width="30" /><span>Web</span></a>
+			<a href="#" class="fisheyeItem"><img src="images/home.png" width="30" /><span>Home</span></a>
+			<a href="#" class="fisheyeItem"><img src="images/email.png" width="30" /><span>Email</span></a>
+			<a href="#" class="fisheyeItem"><img src="images/display.png" width="30" /><span>Display</span></a>
+			<a href="#" class="fisheyeItem"><img src="images/clock.png" width="30" /><span>Clock</span></a>
+			<a href="#" class="fisheyeItem"><img src="images/web.png" width="30" /><span>Web</span></a>
+		</div>
+</div>
+
+<script type="text/javascript">
+	
+	$(document).ready(
+		function()
+		{
+			$('#fisheye').Fisheye(
+				{
+					maxWidth: 50,
+					items: 'a',
+					itemsText: 'span',
+					container: '.fisheyeContainter',
+					itemWidth: 40,
+					proximity: 90,
+					halign : 'center'
+				}
+			)
+			
+		}
+	);
+
+</script>
+
+</body>
+</html>

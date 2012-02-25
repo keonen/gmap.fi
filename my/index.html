@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+ Copyright 2008 Google Inc. 
+ Licensed under the Apache License, Version 2.0: 
+ http://www.apache.org/licenses/LICENSE-2.0 
+ -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>Embedding a Panoramio map into your web page</title>
+
+
+<style type="text/css">
+  /*give the body height:100% so that its child
+    elements can have percentage heights*/
+  body{ height:100% }
+
+  /*this is what we want the div to look like*/
+  div.fullscreen{
+    display:block;
+
+    /*set the div in the top-left corner of the screen*/
+    position:absolute;
+    top:0;
+    left:0;
+    
+    /*set the width and height to 100% of the screen*/
+    width:100%;
+    height:100%;
+  }
+
+</style>
+
+<body>
+<div class="fullscreen">
+<iframe src="http://www.panoramio.com/plugin.php?lt=66.5005382&amp;ln=25.7354611&amp;z=2&amp;k=0" width="100%" height="100%" frameborder="0"></iframe>
+</div>
+</body>
+</html>

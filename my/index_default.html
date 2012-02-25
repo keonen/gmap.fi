@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+ Copyright 2008 Google Inc. 
+ Licensed under the Apache License, Version 2.0: 
+ http://www.apache.org/licenses/LICENSE-2.0 
+ -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>Google Maps API Example - Photo Layer</title>
+    <style type="text/css">
+      body { 
+        font-family: Arial, sans serif;
+        font-size: 11px;
+        background-color:#CEE3F6;
+      }
+		v\:* {behavior:url(#default#VML);}
+		   html, body {width: 100%; height: 100%}
+		   body {margin-top: 0px; margin-right: 0px; margin-left: 0px; margin-bottom: 0px}
+    </style>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.95&amp;key=AIzaSyCw75HxXCWyj0mxOx2GuQ8oD35DeIkgsWg"
+      type="text/javascript"></script>
+    <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js" type="text/javascript"></script>
+       <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/dragzoom/1.3/src/dragzoom.js" type="text/javascript"></script>
+    <script src="js/markerlight.js" type="text/javascript"></script>
+    <script src="js/photolayer.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+/**
+* Utility function to extract parameters appended to URL.
+* @param {String} name Name of parameter in URL
+* @return {String} Value of parameter, or "" if not found
+*/
+function getURLParam(name) {
+  var regexS = "[\\?&]" + name + "=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.href);
+  return (results === null ? "" : results[1]);
+}
+
+var map = null;
+var photoLayer = null;
+
+function setupMap() {
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map"));
+    map.setCenter(new GLatLng(66.4973084, 25.725341), 13);
+    map.addMapType(G_PHYSICAL_MAP);
+    map.setMapType(G_PHYSICAL_MAP);
+    map.enableGoogleBar();
+    map.addControl(new GSmallMapControl());
+
+    var boxStyleOpts = { opacity: .2, border: "2px solid yellow" };
+    var otherOpts = {
+              buttonHTML: "<img src='zoom-control-inactive.png' />",
+              buttonZoomingHTML: "<img src='zoom-control-active.png' />",
+              buttonStartingStyle: {width: '17px', height: '17px'},
+              overlayRemoveTime: 0 };
+    map.addControl(new DragZoomControl(boxStyleOpts, otherOpts, {}),
+        new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(17, 105)));
+
+    map.enableDoubleClickZoom();
+    map.enableScrollWheelZoom();
+    var tag = getURLParam("tag");
+    if (tag) {
+      document.getElementById("tag").value = tag;
+    }
+    photoLayer = new PhotoLayer(map, {tag:  document.getElementById("tag").value, sidebar: document.getElementById("sidebar")});
+    photoLayer.enable();
+  }
+}
+
+function changeTag() {
+  var tag = document.getElementById("tag").value;
+  photoLayer.changeTag(tag);
+}
+ 
+
+    //]]>
+    </script>
+  </head>
+
+  <body onload="setupMap()" onunload="GUnload()">
+<div>
+<form action="demogallery.html" onsubmit="changeTag(); return false;" method="get">
+   <center><table width="98%" border="0"><tr><td>Kuvahaku:<input type="text" value="sunset" id="tag"/><input type="submit" value="Etsi" onclick="changeTag()"/><em>  (Ehdotuksia: river, snow, city, nature)  </em></td><td align="right">Tallenna kuviasi palvelimelle: <a href="http://www.panoramio.com/upload/">Upload</a></td></tr></table></center>
+</form>
+</div>
+
+<div id="map" style="width:100%; height:95%;"></div>
+</body>
+</html>
+
+

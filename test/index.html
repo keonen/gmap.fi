@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Google Maps JavaScript API v3 Example: Custom Controls</title>
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript"> 
+
+var map;
+var rovaniemi = new google.maps.LatLng(66.5005627, 25.7270549);
+
+function HomeControl(controlDiv, map) {
+
+  // Set CSS styles for the DIV containing the control
+  // Setting padding to 5 px will offset the control
+  // from the edge of the map.
+  controlDiv.style.padding = '0px';
+
+  // Set CSS for the control border.
+  var controlUI = document.createElement('DIV');
+  //controlUI.style.backgroundColor = 'white';
+  //controlUI.style.borderStyle = 'solid';
+  //controlUI.style.borderWidth = '2px';
+  controlUI.style.elementWidth = '500px';
+  //controlUI.style.cursor = 'pointer';
+  //controlUI.style.textAlign = 'center';
+  //controlUI.title = 'Click to set the map to Home';
+  controlDiv.appendChild(controlUI);
+
+  // Set CSS for the control interior.
+  var controlText = document.createElement('DIV');
+  //controlText.style.fontFamily = 'Arial,sans-serif';
+  //controlText.style.fontSize = '12px';
+  //controlText.style.paddingLeft = '4px';
+  //controlText.style.paddingRight = '4px';
+  controlText.innerHTML = '<div id="test" class="transbox"><p><iframe name="myframe" src="/term" frameborder="0"></iframe></p></div>';
+  controlUI.appendChild(controlText);
+  //controlText.innerHTML = 'Home';
+  //controlUI.appendChild(controlText);
+  //setHomeUI.innerHTML =
+  //docume.getElementById('DivExample').innerHTML =
+
+  // Setup the click event listeners: simply set the map to Chicago.
+  google.maps.event.addDomListener(controlUI, 'click', function() {
+    map.setCenter(chicago)
+  });
+}
+
+function initialize() {
+  var mapDiv = document.getElementById('map_canvas');
+  var myOptions = {
+    zoom: 12,
+    center: rovaniemi,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  map = new google.maps.Map(mapDiv, myOptions);
+
+  // Create the DIV to hold the control and call the HomeControl() constructor
+  // passing in this DIV.
+  var homeControlDiv = document.createElement('DIV');
+  var homeControl = new HomeControl(homeControlDiv, map);
+
+  homeControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
+}
+ 
+
+</script>
+
+
+
+
+<style type="text/css">
+div.background
+  {
+  width:300px;
+  height:150px;
+  background:url(klematis.jpg) repeat;
+  border:1px solid black;
+  }
+div.transbox
+  {
+  width:310px;
+  height:160px;
+  margin:5px 5px;
+  font-size:10%;
+  background-color:#ffffff;
+  border:1px solid black;
+  opacity:0.6;
+  filter:alpha(opacity=60); /* For IE8 and earlier */
+  }
+div.transbox p
+  {
+  margin:5px 5px;
+  font-weight:bold;
+  color:#000000;
+  }
+</style>
+
+</head>
+<body onload="initialize()">
+  <div id="map_canvas"></div>
+
+</body>
+</html>
+

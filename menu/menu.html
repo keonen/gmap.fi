@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Drop-Down Menu</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+
+<!-- dd menu -->
+<script type="text/javascript">
+<!--
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+
+</head>
+<body>
+<ul id="sddm">
+	<li><a href="#" onmouseover="mopen('m1')" onmouseout="mclosetime()">Home</a>
+		<div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+		<a href="http://gmap.fi" target="_blank">home</a>
+		<a href="http://geo.gmap.fi" target="_blank">geocode</a>
+		<a href="http://my.gmap.fi" target="_blank">photos</a>
+		</div>
+	</li>
+
+	<li><a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()">Project</a>
+		<div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+		<a href="http://lmaps.tk" target="_blank">website</a>
+		<a href="http://maps.coo.fi" target="_blank">chat</a>
+		</div>
+	</li>
+	<li><a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()">About</a>
+		<div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+		<a href="http://code.google.com/intl/fi-FI/apis/maps/index.html" target="_blank">google maps</a>
+		<a href="http://code.google.com/intl/fi-FI/appengine/" target="_blank">google app</a>
+		</div>
+	</li>
+</ul>
+</body>
+</html>
